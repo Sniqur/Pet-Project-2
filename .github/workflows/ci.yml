@@ -25,5 +25,5 @@ jobs:
   
         - name: Push to DockerHub
           run: |
-            docker build -t car-page:latest .
+            docker build -t steeve05/car-page:latest .
             docker push steeve05/car-page:latest
