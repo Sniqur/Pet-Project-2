@@ -1,0 +1,29 @@
+name: CI Pipeline
+
+on:
+    
+    push:
+      branches: [ "main" ] 
+  
+  jobs:
+    build:
+  
+      runs-on: ubuntu-latest
+  
+      steps:
+        - name: Checkout repository
+          uses: actions/checkout@v4
+  
+        - name: Login DockerHub
+          env: 
+            DOCKER_USERNAME: ${{secrets.DOCKER_USERNAME}}
+            DOCKER_PASSWORD: ${{secrets.DOCKER_PASSWORD}}
+        
+          run: sudo docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
+  
+       
+  
+        - name: Push to DockerHub
+          run: |
+            docker build -t car-page:latest .
+            docker push steeve05/car-page:latest
