@@ -13,16 +13,17 @@ jobs:
       steps:
         - name: Checkout repository
           uses: actions/checkout@v4
-  
-        - name: Login DockerHub
+      
+        - name: Log in to Docker Hub
           env: 
-            DOCKER_USERNAME: ${{secrets.DOCKER_USERNAME}}
-            DOCKER_PASSWORD: ${{secrets.DOCKER_PASSWORD}}
-        
-          run: sudo docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
-  
-        - name: Push to DockerHub
+            DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
+            DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
+          run: echo $DOCKER_PASSWORD | docker login -u $DOCKER_USERNAME --password-stdin
+      
+        - name: Build and push Docker image to Docker Hub
           run: |
             docker build -t steeve05/car-page:latest .
             docker push steeve05/car-page:latest
-            
+      
+
+
