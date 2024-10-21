@@ -24,6 +24,9 @@ jobs:
         #   run: |
         #     docker build -t steeve05/car-page:latest .
         #     docker push steeve05/car-page:latest
+
+        - name: Install Docker Compose
+          run: sudo apt-get update && sudo apt-get install -y docker-compose
         - name: Push to DockerHub
           run: | 
             sudo docker-compose build
