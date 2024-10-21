@@ -8,12 +8,17 @@ services:
     image: steeve05/car-page:latest
     ports: 
        - "8080:8080"
+  
   nginx:
     image: nginx:latest
     volumes:
-      - ./app:/usr/share/nginx/html/
+      - ./nginx.conf:/etc/nginx/conf.d/default.conf  # Підключаємо кастомний конфіг
+      - ./app:/usr/share/nginx/html/  # Статичні файли з папки app
     ports:
       - "80:80"
+    depends_on:
+      - backend
+
 
   # node-exporter:
   #   image: prom/node-exporter:latest
