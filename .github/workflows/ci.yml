@@ -22,8 +22,8 @@ jobs:
       
         - name: Build and push Docker image to Docker Hub
           run: |
-            docker build -t steeve05/car-page:latest .
-            docker push steeve05/car-page:latest
+            sudo docker-compose build
+            sudo docker-compose push 
       
 
 
