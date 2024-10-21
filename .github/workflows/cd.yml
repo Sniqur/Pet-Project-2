@@ -12,7 +12,7 @@ jobs:
     runs-on: self-hosted
 
     steps:
-        
+
     - name: Log in to Docker Hub
       env: 
         DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
@@ -20,13 +20,13 @@ jobs:
       run: echo $DOCKER_PASSWORD | docker login -u $DOCKER_USERNAME --password-stdin
     
     - name: Pull Docker image DockerHub
-      run:  docker pull steeve05/car-page:latest
+      run:  sudo docker pull steeve05/car-page:latest
    
     - name: Delete old docker container
-      run:  docker rm -f car-page-container || true
+      run:  sudo docker rm -f car-page-container || true
 
     - name: Run Latest Docker Container
-      run:  docker run -d -p 8080:80 --name car-page-container steeve05/car-page
+      run:  sudo docker run -d -p 8080:80 --name car-page-container steeve05/car-page
    
 
 
