@@ -19,14 +19,11 @@ jobs:
             DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
             DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
           run: echo $DOCKER_PASSWORD | docker login -u $DOCKER_USERNAME --password-stdin
-        
-        - name: Install Docker Compose
-          run: sudo apt-get update && sudo apt-get install -y docker-compose
-        
+      
         - name: Build and push Docker image to Docker Hub
           run: |
-            sudo docker-compose build
-            sudo docker-compose push 
+            docker build -t steeve05/car-page:latest .
+            docker push steeve05/car-page:latest
       
 
 

@@ -1,5 +1,5 @@
 FROM nginx:latest
 
-COPY ./app /usr/share/nginx/html/
+COPY ./app /var/www/html
 
 EXPOSE 80
